@@ -42,4 +42,18 @@ router.post('/topic/add', (req, res)=>{
     })
 })
 
+router.get('/topic/:id', (req, res)=>{
+    console.log(req.params.id)
+    var id = req.params.id
+    var sql = 'SELECT * FROM topic WHERE id=?'
+    db.query(sql, [id], (err, result)=>{
+        if(!err){
+            res.render('test', {topic:result})
+        }
+        else{
+            console.log(err)
+        }
+    })
+})
+
 module.exports = router;
